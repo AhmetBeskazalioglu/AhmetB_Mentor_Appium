@@ -15,9 +15,11 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
+import static com.krafttech.utils.MobileUtilities.*;
+
 public class Test_05 {
 
-    public static AppiumDriver<MobileElement> driver;
+    AppiumDriver<MobileElement> driver;
 
     WebDriverWait wait;
 
@@ -25,21 +27,16 @@ public class Test_05 {
     @Test
     public void test_01() {
 
-
         driver= MobileUtilities.openApp(Device.PIXEL_2, App.API_DEMOS);
         wait = new WebDriverWait(driver, 10);
 
         clickWithText("Continue");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MobileUtilities.getLocatorByText("OK")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getLocatorByText("OK")));
         clickWithText("OK");
         clickWithText("OK");
         clickWithText("API Demos");
         clickWithText("Accessibility");
 
         MobileUtilities.closeApp();
-    }
-
-    public void clickWithText(String text){
-        driver.findElement(By.xpath("//*[@text='"+text+"']")).click();
     }
 }

@@ -13,72 +13,70 @@ import static com.krafttech.utils.Driver.*;
 
 public class MobileUtilities {
 
-    public static AppiumDriver<MobileElement> openApp(Device device, App app) {
+    public static AppiumDriver<MobileElement> openApp(Device device, App app){
         runAppiumService();
         return getDriver(device, app);
     }
 
-    public static void closeApp() {
+    public static void closeApp(){
         getDriver().closeApp();
         stopAppiumService();
     }
 
-    public static WebElement getElementWithText(String text) {
-        return getDriver().findElementByXPath("//*[@text='" + text + "']");
+    public static WebElement getElementByText(String text){
+        return getDriver().findElement(By.xpath("//*[@text='"+text+"']"));
+    }
+
+    public static By getLocatorByText(String text){
+        return By.xpath("//*[@text='"+text+"']");
     }
 
     public static void clickWithText(String text) {
-        getDriver().findElementByXPath("//*[@text='" + text + "']").click();
+        getDriver().findElement(By.xpath("//*[@text='" + text + "']")).click();
     }
 
-    public static By getLocatorByText(String text) {
-        return By.xpath("//*[@text='" + text + "']");
-    }
-
-    public static void swipeV(double start, double end) {
-        int height = getDriver().manage().window().getSize().getHeight();
-        int width = getDriver().manage().window().getSize().getWidth();
+    public static void swipeV(double startPoint, double endPoint){
+        int width = getDriver().manage().window().getSize().width;
+        int height = getDriver().manage().window().getSize().height;
 
         new TouchAction<>(getDriver())
-                .press(PointOption.point(width / 2, (int) (height * start)))
-                .moveTo(PointOption.point(width / 2, (int) (height * end)))
+                .press(PointOption.point(width/2, (int) (height*startPoint)))
+                .moveTo(PointOption.point(width/2, (int) (height*endPoint)))
                 .release()
                 .perform();
-
     }
 
-    public static void swipeUntil(By by, double start, double end){
-        while(getDriver().findElements(by).size()==0){
-            swipeV(start, end);
+    public static void swipeUntil(By locator, double startPoint, double endPoint){
+        while (getDriver().findElements(locator).size() == 0){
+            swipeV(startPoint,endPoint);
         }
-
     }
 
-    public static void swipeAndClick(String text, double start, double end){
-        while(getDriver().findElements(getLocatorByText(text)).size()==0){
-            swipeV(start, end);
+    public static void swipeAndClick(By locator, double startPoint, double endPoint){
+        while (getDriver().findElements(locator).size() == 0){
+            swipeV(startPoint,endPoint);
         }
-        clickWithText(text);
+        getDriver().findElement(locator).click();
     }
 
     public static void clickToCoordinate(int x, int y){
         new TouchAction<>(getDriver())
-                .press(PointOption.point(x, y))
+                .press(PointOption.point(x,y))
                 .release()
                 .perform();
     }
 
-    public static void clickNumber(Integer number) {
-        getDriver().findElementByAccessibilityId(String.valueOf(number)).click();
+    public static void clickNumber(Integer i){
+        getDriver().findElementByAccessibilityId(String.valueOf(i)).click();
     }
 
-    public static void clickOperator(String operator) {
+    public static void clickOperator(String operator){
         getDriver().findElementByAccessibilityId(operator).click();
     }
 
-    public static void activateBackgroundApp(String appPackage) {
+    public static void activateBackgroundApp(String appPackage){
         ApplicationState applicationState = getDriver().queryAppState(appPackage);
-        if (applicationState.equals(ApplicationState.RUNNING_IN_BACKGROUND)) {
+        if (applicationState.equals(ApplicationState.RUNNING_IN_BACKGROUND)){
             getDriver().activateApp(appPackage);
         }
     }

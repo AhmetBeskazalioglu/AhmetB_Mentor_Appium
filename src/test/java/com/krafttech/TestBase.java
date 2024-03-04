@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestBase {
 
     protected AppiumDriver<MobileElement> driver;
@@ -18,7 +20,7 @@ public class TestBase {
     @BeforeTest
     public void beforeTest() {
         driver = MobileUtilities.openApp(Device.PIXEL_2, App.API_DEMOS);
-        driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10);
     }
 

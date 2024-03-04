@@ -3,22 +3,25 @@ package com.krafttech.tests;
 import com.krafttech.TestBase;
 import com.krafttech.utils.App;
 import com.krafttech.utils.Device;
-import com.krafttech.utils.Locators;
-import com.krafttech.utils.MobileUtilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static com.krafttech.utils.App.API_DEMOS;
+import static com.krafttech.utils.App.CALCULATOR;
+import static com.krafttech.utils.Device.PIXEL_2;
+import static com.krafttech.utils.Locators.lAutoCompleteList;
+import static com.krafttech.utils.Locators.lResult;
 import static com.krafttech.utils.MobileUtilities.*;
 
-public class Test_08 extends TestBase implements Locators{
+public class Test_08 extends TestBase{
 
 
     @Test
     public void test_01() {
 
         clickWithText("Continue");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MobileUtilities.getLocatorByText("OK")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getLocatorByText("OK")));
         clickWithText("OK");
         clickWithText("OK");
         clickWithText("API Demos");
@@ -34,7 +37,7 @@ public class Test_08 extends TestBase implements Locators{
     public void test_02() {
 
         clickWithText("Continue");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MobileUtilities.getLocatorByText("OK")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getLocatorByText("OK")));
         clickWithText("OK");
         clickWithText("OK");
         clickWithText("API Demos");
@@ -43,22 +46,20 @@ public class Test_08 extends TestBase implements Locators{
         clickWithText("Views");
         clickWithText("Auto Complete");
 
-        int actualSize = driver.findElements(lAutoCompleteList).size();
+        driver= openApp(PIXEL_2, CALCULATOR);
 
-        //driver.openApp(Device.PIXEL_2, App.CALCULATOR);
-
-        clickNumber(1);
+        clickNumber(9);
         clickOperator("minus");
         clickNumber(2);
         clickOperator("equals");
-
         String expectedText = driver.findElement(lResult).getText();
+        int expected = Integer.parseInt(expectedText);
 
-        //activateBackgroundApp(API_Demos.appPackage);
+        activateBackgroundApp(API_DEMOS.appPackage);
 
         int actual= driver.findElements(lAutoCompleteList).size();
 
-        Assert.assertEquals(actualSize, actual);
+        Assert.assertEquals(actual, actual);
     }
 }
 

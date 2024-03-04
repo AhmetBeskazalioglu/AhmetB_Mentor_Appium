@@ -11,47 +11,50 @@ public class Test_07 extends TestBase {
 
 
     @Test
-    public void test_01() {
+    public void test1()  {
 
         clickWithText("Continue");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MobileUtilities.getLocatorByText("OK")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getLocatorByText("OK")));
         clickWithText("OK");
         clickWithText("OK");
         clickWithText("API Demos");
         clickWithText("Accessibility");
         driver.navigate().back();
         clickWithText("Views");
-        swipeV(.9, .2);
-        swipeV(.8, .3);
-        swipeV(.2, .9);
+        swipeV(.9,.2);
+        swipeV(.8,.3);
+        swipeV(.2,.9);
+
     }
 
     @Test
-    public void test_02() {
+    public void test2()  {
 
         clickWithText("Continue");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MobileUtilities.getLocatorByText("OK")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getLocatorByText("OK")));
         clickWithText("OK");
         clickWithText("OK");
         clickWithText("API Demos");
         clickWithText("Accessibility");
         driver.navigate().back();
         clickWithText("Views");
-        swipeUntil(getLocatorByText("WebView"),.8,0.2);
+        swipeUntil(getLocatorByText("WebView"),.8,.3);
+        clickWithText("WebView");
     }
 
     @Test
-    public void test_03() {
+    public void test3()  {
 
         clickWithText("Continue");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MobileUtilities.getLocatorByText("OK")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getLocatorByText("OK")));
         clickWithText("OK");
         clickWithText("OK");
         clickWithText("API Demos");
         clickWithText("Accessibility");
         driver.navigate().back();
         clickWithText("Views");
-        swipeAndClick("WebView",.8,.2);
+        swipeAndClick(getLocatorByText("WebView"),.8,.3);
+
     }
 
 }
