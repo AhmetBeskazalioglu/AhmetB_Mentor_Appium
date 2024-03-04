@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite [
+        <!ELEMENT suite (test)*>
+        <!ATTLIST suite
+                name CDATA #REQUIRED>
+        <!ELEMENT test (classes)*>
+        <!ATTLIST test
+                verbose CDATA #REQUIRED
+                preserve-order CDATA #REQUIRED
+                name CDATA #REQUIRED>
+        <!ELEMENT classes (#PCDATA)>
+        ]>
+<suite name="All Test Suite"><test verbose="2" preserve-order="true" name="/Users/anke/IdeaProjects/AhmetB_Mentor_Appium/Web/src/test/java/com/krafttech/runners"><classes/></test></suite>
