@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/java/com/krafttech/cucumber",
         glue = "com.krafttech.cucumber",
-        dryRun = true,
+        dryRun = false,
 
         plugin = {"pretty", "html:target/cucumber-reports"}
 )

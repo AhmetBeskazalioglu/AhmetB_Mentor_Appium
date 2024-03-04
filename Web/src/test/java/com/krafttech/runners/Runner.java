@@ -11,7 +11,7 @@ import org.testng.annotations.Parameters;
 @CucumberOptions(
         features = "src/test/java/com/krafttech/features",
         glue = "com/krafttech/stepDefs",
-        dryRun = true,
+        dryRun = false,
         tags = "",
 
         plugin = {"pretty", "html:target/cucumber-reports"}
@@ -22,9 +22,9 @@ public class Runner extends AbstractTestNGCucumberTests {
     @BeforeTest
     @Parameters("environment")
     public void beforeTest(String environment) {
-        if (environment.equals("pc")) {
+        if (environment.equalsIgnoreCase("pc")) {
             Driver.getDriver();
-        } else if (environment.equals("mobile")) {
+        } else if (environment.equalsIgnoreCase("mobile")) {
             Driver.getMobileDriver();
         }
 

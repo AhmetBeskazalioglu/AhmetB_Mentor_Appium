@@ -11,10 +11,11 @@ import org.testng.Assert;
 
 import java.util.Map;
 
+import static com.google.gson.internal.bind.TypeAdapters.URL;
 import static com.krafttech.utilsWeb.LocatorsWeb.URL;
 
 public class KraftLoginStepDefs {
-    WebDriver driver= Driver.getMobileDriver();
+    WebDriver driver;
 
     @Given("The user is on the Kraft login page")
     public void theUserIsOnTheKraftLoginPage() {

@@ -8,13 +8,15 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static com.krafttech.utils.App.CALCULATOR;
+import static com.krafttech.utils.Device.PIXEL_2;
 import static com.krafttech.utils.Driver.*;
 import static com.krafttech.utils.MobileUtilities.*;
 
 public class CalculatorStepDefs {
     @Given("The user is on the start page")
     public void theUserIsOnTheStartPage() {
-        openApp(Device.PIXEL_2, App.CALCULATOR);
+        openApp(PIXEL_2, CALCULATOR);
     }
 
     @When("The user sums of following numbers")
@@ -29,7 +31,9 @@ public class CalculatorStepDefs {
 
     @Then("The result should be {int}")
     public void theResultShouldBe(int expected) {
-        //String actual = driver.findElement(Locators.lResult).getText();
-       // Assert.assertEquals(expected, Integer.parseInt(actual));
+        String actualText = Driver.getDriver().findElement(Locators.lResult).getText();
+        int actual = Integer.parseInt(actualText);
+
+        Assert.assertEquals(actual,expected);
     }
 }
